@@ -1,0 +1,11 @@
+streamlit
+PyPDF2
+pdf2image
+dotenv
+openai
+tiktoken
+faiss-cpu
+pytesseract
+backoff
+tempfile
+pathlib
