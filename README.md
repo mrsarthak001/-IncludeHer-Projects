@@ -29,13 +29,13 @@ https://github.com/alisa-30/-IncludeHer-Projects/assets/95209452/6e1516e0-ec03-4
 1. **Clone the repository:**
 
     ```bash
-    git clone https://github.com/alisa-30/IncludeHer-Projects.git
+    git clone https://github.com/alisa-30/-IncludeHer-Projects.git
     ```
 
 2. **Navigate to the cloned directory:**
 
     ```bash
-    cd IncludeHer-Projects
+    cd -IncludeHer-Projects
     ```
 
 3. **Create an .env file:**
