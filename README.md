@@ -12,6 +12,10 @@ Welcome to PdfConnect, a revolutionary Streamlit web application that allows you
 
 - **AI-Powered Information Retrieval:** Let ChatGPT handle the heavy lifting. Extract relevant information from your PDFs, saving you valuable time.
 
+## Demo
+
+https://github.com/alisa-30/-IncludeHer-Projects/assets/95209452/6e1516e0-ec03-4721-b176-a3548b68ca29
+
 ## Prerequisites:
 
 Before running PdfConnect, ensure the following:
@@ -19,10 +23,6 @@ Before running PdfConnect, ensure the following:
 - **Python:** Ensure you have Python installed on your system. You can download it from [python.org](https://www.python.org/).
 
 - **OpenAI API Key:** Obtain an OpenAI API key by registering on the [OpenAI platform](https://platform.openai.com/). The API key is required for utilizing OpenAI's services in the project.
-
-## Demo
-
-https://github.com/alisa-30/-IncludeHer-Projects/assets/95209452/6e1516e0-ec03-4721-b176-a3548b68ca29
 
 ## Setup:
 
