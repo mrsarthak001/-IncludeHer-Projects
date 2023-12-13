@@ -66,10 +66,4 @@ https://github.com/alisa-30/-IncludeHer-Projects/assets/95209452/6e1516e0-ec03-4
 - OpenAI GPT-3.5 Turbo
 - Other Python libraries (specified in `requirements.txt`)
 
-## License:
-
-This project is licensed under the [MIT License](LICENSE).
-
----
-
 Unleash the power of AI on your PDFs with ChatGPT-PDFBot and make your document interactions a breeze! 📄💬
