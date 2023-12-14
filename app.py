@@ -47,28 +47,18 @@ def save_uploaded_file(uploaded_file):
     return path
 
 
-def text_from_image(pdf_docs, poppler_path):
+def text_from_pdf(pdf_doc, poppler_path):
     pytesseract.pytesseract.tesseract_cmd = (
         r"Tesseract-OCR\tesseract.exe"  # insert the path
     )
     extracted_text = ""
-    if pdf_docs:
-        images = convert_from_path(pdf_docs, poppler_path=poppler_path)
+    if pdf_doc:
+        images = convert_from_path(pdf_doc, poppler_path=poppler_path)
         for i, image in enumerate(images):
             text = pytesseract.image_to_string(image, lang="eng")
             extracted_text += text
     return extracted_text
-
-
-def get_pdf_text(pdf_docs):
-    text = ""
-    if pdf_docs:
-        for pdf in pdf_docs:
-            pdf_reader = PdfReader(pdf)
-            for page in pdf_reader.pages:
-                text += page.extract_text()
-    return text
-
+    
 
 def get_text_chunks(raw_text):
     text_splitter = CharacterTextSplitter(
@@ -193,12 +183,9 @@ def main():
             else:
                 with st.spinner("Processing"):
                     raw_text = ""
-                    raw_text = get_pdf_text(pdf_files)
-
-                    # for reading text from images present in pdf (comment it if you don't need)
                     for uploaded_file in pdf_files:
                         temp_path = save_uploaded_file(uploaded_file)
-                        raw_text += text_from_image(temp_path, poppler_path)
+                        raw_text += text_from_pdf(temp_path, poppler_path)
 
                     processed_text = str(
                         raw_text.encode("utf-8", errors="replace"), "utf-8"
