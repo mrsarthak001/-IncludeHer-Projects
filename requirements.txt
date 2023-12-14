@@ -1,5 +1,4 @@
 streamlit
-PyPDF2
 pdf2image
 python-dotenv
 openai
@@ -8,4 +7,4 @@ faiss-cpu
 pytesseract
 backoff
 pathlib
-
+transformers
