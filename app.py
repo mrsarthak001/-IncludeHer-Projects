@@ -17,6 +17,7 @@ from langchain.schema import HumanMessage, SystemMessage, AIMessage
 from pdf2image import convert_from_path
 from htmltemp import css, bot_template, user_template
 from helppack import inference, tokenize_gpt2, detokenize_gpt2, split_text
+from lateX import latex_to_pdf
 
 MAX_TOKENS = 4000
 MAX_NEW_TOKENS = 500
@@ -57,7 +58,7 @@ def text_from_pdf(pdf_doc, poppler_path):
             text = pytesseract.image_to_string(image, lang="eng")
             extracted_text += text
     return extracted_text
-    
+
 
 def get_text_chunks(raw_text):
     text_splitter = CharacterTextSplitter(
@@ -154,6 +155,26 @@ def summarize(text, mode="summary"):
     return inference(prompt, MAX_NEW_TOKENS)
 
 
+def mindmap(content):
+    response = completions_with_backoff(
+        model="gpt-3.5-turbo",
+        messages=[
+            {
+                "role": "assistant",
+                "content": "Create a precise, non-clustered and easy-to-understand latex mind map code for the given content. It should not be clustered at all, every node should be clearly visible. Refer this : TikZ Library mindmap usetikzlibrary.",
+            },
+            {"role": "user", "content": "{}".format(content)},
+        ],
+        temperature=1,
+        max_tokens=1500,
+        top_p=1,
+        frequency_penalty=0,
+        presence_penalty=0,
+    )
+    textcontent = response.choices[0].message.content
+    latex_to_pdf(textcontent)
+
+
 def main():
     load_dotenv()
     poppler_path = r"poppler-23.11.0\Library\bin"  # insert the path
@@ -171,6 +192,9 @@ def main():
 
     with st.sidebar:
         st.header("YOUR DOCUMENTS")
+        os.environ[
+            "OPENAI_API_KEY"
+        ] = "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"
         pdf_files = st.file_uploader(
             "Upload your PDFs here and 'Process'",
             accept_multiple_files=True,
@@ -210,6 +234,20 @@ def main():
                     with open("summary.txt", "w", encoding="utf-8") as f:
                         f.write("SUMMARY :" + "\n")
                     summarize(text)
+                    st.success("This is a success message!", icon="✅")
+
+        if st.button("Generate MindMap"):
+            with st.spinner("Generating"):
+                file_path = Path("summary.txt")
+                if not file_path.exists():
+                    st.error("Summarise the document first")
+                else:
+                    with open(
+                        "summary.txt", "r", encoding="utf-8", errors="replace"
+                    ) as f:
+                        text = f.read()
+                    f.close()
+                    mindmap(text)
                     st.success("This is a success message!", icon="✅")
 
 
