@@ -112,7 +112,7 @@ def handle_userinput(user_q):
                         model="gpt-3.5-turbo",
                         messages=[
                             {
-                                "role": "assistant",
+                                "role": "system",
                                 "content": """You are a helpful assistant and Start with the sentence, Based on my serach and answer the question.""",
                             },
                             {"role": "user", "content": "{}".format(msg)},
@@ -160,7 +160,7 @@ def mindmap(content, query):
         model="gpt-3.5-turbo",
         messages=[
             {
-                "role": "assistant",
+                "role": "system",
                 "content": "Create a precise ,spread out and easy-to-understand latex mind map code only on the topic {} and nothing else based on the given content. Use short phrases only. Refer this : TikZ Library mindmap usetikzlibrary. Nodes should not go out of the paage and it should not be clustered at all, every node should be clearly visible and distant from each other. Make all the branches longer such that they don't overlap.".format(
                     query),
             },
