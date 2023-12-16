@@ -12,6 +12,8 @@ Welcome to PdfConnect, a revolutionary Streamlit web application that allows you
 
 - **AI-Powered Information Retrieval:** Let ChatGPT handle the heavy lifting. Extract relevant information from your PDFs, saving you valuable time.
 
+- **Mind Map Generation:** Visualize the structure and key concepts of your document by generating mind maps. Gain a new perspective on your content. **[NEW ADD_ON]**
+
 ## Demo
 
 https://github.com/alisa-30/-IncludeHer-Projects/assets/95209452/6e1516e0-ec03-4721-b176-a3548b68ca29
@@ -23,6 +25,8 @@ Before running PdfConnect, ensure the following:
 - **Python:** Ensure you have Python installed on your system. You can download it from [python.org](https://www.python.org/).
 
 - **OpenAI API Key:** Obtain an OpenAI API key by registering on the [OpenAI platform](https://platform.openai.com/). The API key is required for utilizing OpenAI's services in the project.
+
+- **TeXstudio and MiKTeX:** Install TeXstudio from [TeXstudio's official website](https://www.texstudio.org/) and MiKTeX from [MiKTeX's download page](https://miktex.org/download#google_vignette).
 
 ## Setup:
 
