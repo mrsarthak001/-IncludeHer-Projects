@@ -192,9 +192,6 @@ def main():
 
     with st.sidebar:
         st.header("YOUR DOCUMENTS")
-        os.environ[
-            "OPENAI_API_KEY"
-        ] = "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"
         pdf_files = st.file_uploader(
             "Upload your PDFs here and 'Process'",
             accept_multiple_files=True,
