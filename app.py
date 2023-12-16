@@ -155,23 +155,25 @@ def summarize(text, mode="summary"):
     return inference(prompt, MAX_NEW_TOKENS)
 
 
-def mindmap(content):
-    response = completions_with_backoff(
+def mindmap(content, query):
+    response1 = completions_with_backoff(
         model="gpt-3.5-turbo",
         messages=[
             {
                 "role": "assistant",
-                "content": "Create a precise, non-clustered and easy-to-understand latex mind map code for the given content. It should not be clustered at all, every node should be clearly visible. Refer this : TikZ Library mindmap usetikzlibrary.",
+                "content": "Create a precise ,spread out and easy-to-understand latex mind map code only on the topic {} and nothing else based on the given content. Use short phrases only. Refer this : TikZ Library mindmap usetikzlibrary. Nodes should not go out of the paage and it should not be clustered at all, every node should be clearly visible and distant from each other. Make all the branches longer such that they don't overlap.".format(
+                    query),
             },
-            {"role": "user", "content": "{}".format(content)},
+            {   "role": "user", 
+                "content": "{}".format(content)},
         ],
-        temperature=1,
+        temperature= 0,
         max_tokens=1500,
         top_p=1,
         frequency_penalty=0,
         presence_penalty=0,
     )
-    textcontent = response.choices[0].message.content
+    textcontent = response1.choices[0].message.content
     latex_to_pdf(textcontent)
 
 
@@ -197,6 +199,7 @@ def main():
             accept_multiple_files=True,
             type="pdf",
         )
+        query = st.text_input("Enter a particular topic for generating Mind map.")
         if st.button("Process"):
             if not pdf_files:
                 st.error("Add document")
@@ -234,18 +237,21 @@ def main():
                     st.success("This is a success message!", icon="✅")
 
         if st.button("Generate MindMap"):
-            with st.spinner("Generating"):
-                file_path = Path("summary.txt")
-                if not file_path.exists():
-                    st.error("Summarise the document first")
-                else:
-                    with open(
-                        "summary.txt", "r", encoding="utf-8", errors="replace"
-                    ) as f:
-                        text = f.read()
-                    f.close()
-                    mindmap(text)
-                    st.success("This is a success message!", icon="✅")
+            if query == "":
+                st.error("Add a topic first!!")
+            else:
+                with st.spinner("Generating"):
+                    file_path = Path("summary.txt")
+                    if not file_path.exists():
+                        st.error("Summarise the document first")
+                    else:
+                        with open(
+                            "summary.txt", "r", encoding="utf-8", errors="replace"
+                        ) as f:
+                            text = f.read()
+                        f.close()
+                        mindmap(text, query)
+                        st.success("This is a success message!", icon="✅")
 
 
 if __name__ == "__main__":
