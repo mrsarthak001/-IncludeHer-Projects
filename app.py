@@ -167,7 +167,7 @@ def mindmap(content, query):
             {   "role": "user", 
                 "content": "{}".format(content)},
         ],
-        temperature= 0,
+        temperature= 0.3,
         max_tokens=1500,
         top_p=1,
         frequency_penalty=0,
