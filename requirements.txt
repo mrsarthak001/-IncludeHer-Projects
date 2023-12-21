@@ -1,0 +1,10 @@
+streamlit
+pdf2image
+python-dotenv
+openai
+tiktoken
+faiss-cpu
+pytesseract
+backoff
+pathlib
+transformers
