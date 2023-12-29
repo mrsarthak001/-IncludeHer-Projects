@@ -3,7 +3,6 @@ import keys
 from openai import OpenAI
 
 client = OpenAI(
-    # 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
     api_key=keys.openai
 )
 
