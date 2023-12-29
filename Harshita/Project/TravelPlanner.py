@@ -1,9 +1,10 @@
 import requests
+import keys
 from openai import OpenAI
 
 client = OpenAI(
     # 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
-    api_key="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"
+    api_key=keys.openai
 )
 
 def get_famous_places(api_key, city, limit=5):
@@ -117,9 +118,9 @@ def display_route(destinations, route_segments):
         print(f"{i + 1}. Segment - Distance: {distance} meters, Duration: {duration} seconds")
 
 # Example Usage:
-api_key_routing = "5b3ce3597851110001cf6248ad4c5ab83bda4ccf999f3e8513de3103"
-api_key_places = "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"
-api_key_here = "G1Jf40841W3ku0kZAjZ5U2YMEHeKtnOPVIBYYyfRmqE"
+api_key_routing = keys.apiroute
+api_key_places = keys.openai
+api_key_here = keys.apicoordinates
 # prompt=input()
 city = input()
 origin =geocode_here(api_key_here,city)   # Replace with your actual origin coordinates
